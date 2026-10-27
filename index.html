@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>RoomStage AR — Meet your characters</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="RoomStage home"><span class="brand-mark">R</span><span>roomstage<span class="brand-dot">.</span></span></a>
+    <span class="top-note"><span class="status-dot"></span> AR playground</span>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div class="eyebrow"><span class="eyebrow-line"></span> YOUR WORLD, REIMAGINED</div>
+      <h1>Bring a little<br><span>wonder home.</span></h1>
+      <p class="intro-copy">Meet a 3D character, preview it here, then use your Android phone to place it in your real space.</p>
+      <div class="steps">
+        <div class="step"><span>01</span><div><b>Choose</b><small>Pick a character</small></div></div>
+        <div class="step"><span>02</span><div><b>Preview</b><small>Explore in 3D</small></div></div>
+        <div class="step"><span>03</span><div><b>Place in AR</b><small>See it in your space</small></div></div>
+      </div>
+    </section>
+
+    <section class="studio" aria-label="Character preview">
+      <div class="studio-top">
+        <div><span class="studio-label">CHARACTER STUDIO</span><h2 id="character-title">Friendly Robot</h2></div>
+        <span class="live-pill"><span></span> 3D PREVIEW</span>
+      </div>
+
+      <div class="viewer-wrap">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="floor-glow"></div>
+        <model-viewer id="character-viewer"
+          src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
+          alt="A friendly 3D robot character"
+          camera-controls
+          auto-rotate
+          shadow-intensity="1"
+          exposure="1"
+          environment-image="neutral"
+          interaction-prompt="auto"
+          ar
+          ar-modes="webxr scene-viewer"
+          ar-scale="auto"
+          camera-orbit="0deg 75deg 2.6m"
+          field-of-view="30deg">
+          <div slot="progress-bar" class="progress"><div class="progress-fill"></div></div>
+          <div slot="ar-prompt" class="ar-prompt">Move your phone slowly to find a surface</div>
+          <button slot="ar-button" id="ar-launch" class="ar-button">
+            <span class="ar-icon">⌖</span> Place in my space <span class="button-arrow">↗</span>
+          </button>
+          <div class="viewer-loading" id="viewer-loading">Loading your 3D character…</div>
+        </model-viewer>
+        <div class="viewer-caption"><span class="drag-icon">↔</span> Drag to rotate · Pinch to zoom</div>
+      </div>
+
+      <div class="character-info">
+        <div class="character-description"><span class="mini-label">SELECTED CHARACTER</span><p id="character-description">A cheerful companion ready to explore your world.</p></div>
+        <div class="size-control"><label for="size-range">PREVIEW SIZE</label><input id="size-range" type="range" min="0.7" max="1.5" step="0.1" value="1"><div class="range-labels"><span>Smaller</span><span>Larger</span></div></div>
+      </div>
+      <p class="notice" id="status-message" role="status">Tip: on Android, open this site in Chrome and tap “Place in my space”.</p>
+    </section>
+
+    <section class="gallery-section">
+      <div class="section-heading"><div><span class="studio-label">THE COLLECTION</span><h2>Who’s joining you?</h2></div><span class="collection-count">03 CHARACTERS</span></div>
+      <div class="gallery" id="character-gallery">
+        <button class="character-card active" data-character="robot" aria-pressed="true">
+          <span class="card-art robot-art"><span class="art-emoji">🤖</span></span><span class="card-text"><b>Friendly Robot</b><small>Curious · Playful</small></span><span class="card-check">✓</span>
+        </button>
+        <button class="character-card" data-character="astronaut" aria-pressed="false">
+          <span class="card-art astronaut-art"><span class="art-emoji">👨‍🚀</span></span><span class="card-text"><b>Space Explorer</b><small>Brave · Adventurous</small></span><span class="card-check">✓</span>
+        </button>
+        <button class="character-card" data-character="helmet" aria-pressed="false">
+          <span class="card-art helmet-art"><span class="art-emoji">🧑‍🚀</span></span><span class="card-text"><b>Moon Walker</b><small>Calm · Curious</small></span><span class="card-check">✓</span>
+        </button>
+      </div>
+      <p class="gallery-note">These are starter demo models. You can replace them with licensed character models later.</p>
+    </section>
+
+    <section class="how-it-works">
+      <div><span class="studio-label">A QUICK NOTE</span><h2>From screen to real space.</h2></div>
+      <p>Tap <b>Place in my space</b> on a compatible Android phone. Follow the on-screen prompt, move the phone slowly to scan the floor, then tap to place the model. AR availability depends on your phone, browser, and Google Play Services for AR.</p>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">R</span><span>roomstage<span class="brand-dot">.</span></span></a><span>First prototype · Built for curious spaces</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
